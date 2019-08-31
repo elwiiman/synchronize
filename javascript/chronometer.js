@@ -6,7 +6,7 @@ let intervalId; // declaracion de un interval ID global
 let friction = 0.55;
 let yFriction = 0.49;
 // let colDir;
-
+//little change
 //seccion para cargar imagenes
 const groundImage = "images/ground.png";
 
