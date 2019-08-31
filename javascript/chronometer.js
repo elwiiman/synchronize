@@ -35,7 +35,7 @@ const characterImages = {
   frontman: "images/color/frontman.png",
   right: "images/color/manright.png",
   left: "images/color/manleft.png",
-  rightWalk: "images/color/manWalkright.png",
+  rightWalk: "images/color/manWalkRight.png",
   leftWalk: "images/color/manWalkLeft.png",
   transparentMan: "images/color/transparentMan.png"
 };
@@ -44,7 +44,7 @@ const characterGrayImages = {
   frontman: "images/gray/frontman.png",
   right: "images/gray/manright.png",
   left: "images/gray/manleft.png",
-  rightWalk: "images/gray/manWalkright.png",
+  rightWalk: "images/gray/manWalkRight.png",
   leftWalk: "images/gray/manWalkLeft.png",
   transparentMan: "images/gray/transparentMan.png"
 };
