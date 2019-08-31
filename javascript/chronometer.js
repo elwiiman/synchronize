@@ -65,23 +65,30 @@ class Diamond {
     this.image = this.imageDiamond;
     this.limitTop = true;
     this.limitDown = false;
+    this.hasbeenCollected = false;
   }
 
   draw() {
-    if (this.limitTop == true) this.y += 0.2;
-    if (this.y > this.yMax) {
-      this.limitDown = true;
-      this.limitTop = false;
-    }
+    if (this.hasbeenCollected == false) {
+      if (this.limitTop == true) this.y += 0.2;
+      if (this.y > this.yMax) {
+        this.limitDown = true;
+        this.limitTop = false;
+      }
 
-    if (this.limitDown == true) this.y -= 0.2;
-    if (this.y < this.yMin) {
-      this.limitDown = false;
-      this.limitTop = true;
-    }
+      if (this.limitDown == true) this.y -= 0.2;
+      if (this.y < this.yMin) {
+        this.limitDown = false;
+        this.limitTop = true;
+      }
 
-    console.log(this.y, this.yMin, this.yMax);
-    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+      console.log(this.y, this.yMin, this.yMax);
+      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    }
+  }
+
+  clear() {
+    ctx.clearRect(this.x, this.y, this.width, this.height);
   }
 }
 
@@ -371,6 +378,13 @@ class Plattform {
   }
 }
 
+function evalOverlapDiamond() {
+  if (currentCharacter.overlapCheck(diamond)) {
+    diamond.image = diamond.imageTransparentDiamond;
+    diamond.hasbeenCollected = true;
+  }
+}
+
 function evalOverlapDoor() {
   // console.log("aqui estoy");
   // console.log(currentCharacter.overlapCheck(door));
@@ -539,6 +553,7 @@ function startClick() {
     controllerCheck(); //ejecuta los comandos de movimiento de acuerdo a las teclas presionadas
     ground.draw(); // dibuja el piso
     door.draw();
+    diamond.draw();
     plattformWithCharacterColliderCheck(
       plattformArr,
       characterInstanceArr,
@@ -554,7 +569,7 @@ function startClick() {
     replay(); // ejecuta la funcion para las replicas
     drawPresent(); // dibuja el "presente"
     evalOverlapDoor();
-    diamond.draw();
+    evalOverlapDiamond();
   }, 1000 / 35);
 }
 
