@@ -3,6 +3,9 @@
   src: url("fonts/ds-digib.ttf");
 }
 
+body {
+  background-color: #1c2143;
+}
 #sphere {
   border: 2px solid #000;
   border-radius: 20px;

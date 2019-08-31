@@ -8,6 +8,12 @@ let yFriction = 0.49;
 // let colDir;
 //little change
 //seccion para cargar imagenes
+
+const backgroundImage = {
+  night: "images/background/backgroundCity.jpg",
+  light: "images/background/backgroundCityLight.jpg",
+  future: "images/background/backgroundFuture.jpg"
+};
 const groundImage = "images/ground.png";
 
 const diamondImage = {
@@ -48,6 +54,21 @@ const characterGrayImages = {
   leftWalk: "images/gray/manWalkLeft.png",
   transparentMan: "images/gray/transparentMan.png"
 };
+
+class Background {
+  constructor(x, y, width, height) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.image = new Image();
+    this.image.src = backgroundImage.night;
+  }
+
+  draw() {
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+  }
+}
 
 class Diamond {
   constructor(x, y) {
@@ -551,6 +572,7 @@ function startClick() {
     currentTime += 1; //aumenta en 1 el tiempo maestro
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     controllerCheck(); //ejecuta los comandos de movimiento de acuerdo a las teclas presionadas
+    background.draw();
     ground.draw(); // dibuja el piso
     door.draw();
     diamond.draw();
