@@ -56,18 +56,30 @@ class Diamond {
     this.width = 60;
     this.height = 35;
     this.yMin = y;
-    this.yMax = y + 10;
+    this.yMax = y + 8;
     this.imageDiamond = new Image();
     this.imageDiamond.src = diamondImage.colorDiamond;
     this.imageTransparentDiamond = new Image();
     this.imageTransparentDiamond.src = diamondImage.transparentDiamond;
     this.image = new Image();
     this.image = this.imageDiamond;
-    this.isGoingDown = true;
-    this.isGoingUp = false;
+    this.limitTop = true;
+    this.limitDown = false;
   }
 
   draw() {
+    if (this.limitTop == true) this.y += 0.2;
+    if (this.y > this.yMax) {
+      this.limitDown = true;
+      this.limitTop = false;
+    }
+
+    if (this.limitDown == true) this.y -= 0.2;
+    if (this.y < this.yMin) {
+      this.limitDown = false;
+      this.limitTop = true;
+    }
+
     console.log(this.y, this.yMin, this.yMax);
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
