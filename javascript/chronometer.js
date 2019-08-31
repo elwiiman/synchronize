@@ -8,45 +8,45 @@ let yFriction = 0.49;
 // let colDir;
 
 //seccion para cargar imagenes
-const groundImage = "../images/ground.png";
+const groundImage = "images/ground.png";
 
 const diamondImage = {
-  colorDiamond: "../images/diamond/diamond.png",
-  transparentDiamond: "../images/diamond/diamondTransparent.png"
+  colorDiamond: "images/diamond/diamond.png",
+  transparentDiamond: "images/diamond/diamondTransparent.png"
 };
 
 const doorImage = {
-  activeDoor: "../images/door/activeDoor.png",
-  inactiveDoor: "../images/door/inactiveDoor.png"
+  activeDoor: "images/door/activeDoor.png",
+  inactiveDoor: "images/door/inactiveDoor.png"
 };
 
 const obstacleDoorImage = {
-  obstacleDoorBig: "../images/obstacleDoor/obstacleDoor-Big.png",
-  obstacleDoorSmall: "../images/obstacleDoor/obstacleDoor-Small.png"
+  obstacleDoorBig: "images/obstacleDoor/obstacleDoor-Big.png",
+  obstacleDoorSmall: "images/obstacleDoor/obstacleDoor-Small.png"
 };
 
 const plattformImages = {
-  plattformBase: "../images/plattform/plattformBase.png",
-  plattformTop: "../images/plattform/plattformTop.png",
-  plattform: "../images/plattform/plattform.png"
+  plattformBase: "images/plattform/plattformBase.png",
+  plattformTop: "images/plattform/plattformTop.png",
+  plattform: "images/plattform/plattform.png"
 };
 
 const characterImages = {
-  frontman: "../images/color/frontman.png",
-  right: "../images/color/manright.png",
-  left: "../images/color/manleft.png",
-  rightWalk: "../images/color/manWalkright.png",
-  leftWalk: "../images/color/manWalkLeft.png",
-  transparentMan: "../images/color/transparentMan.png"
+  frontman: "images/color/frontman.png",
+  right: "images/color/manright.png",
+  left: "images/color/manleft.png",
+  rightWalk: "images/color/manWalkright.png",
+  leftWalk: "images/color/manWalkLeft.png",
+  transparentMan: "images/color/transparentMan.png"
 };
 
 const characterGrayImages = {
-  frontman: "../images/gray/frontman.png",
-  right: "../images/gray/manright.png",
-  left: "../images/gray/manleft.png",
-  rightWalk: "../images/gray/manWalkright.png",
-  leftWalk: "../images/gray/manWalkLeft.png",
-  transparentMan: "../images/gray/transparentMan.png"
+  frontman: "images/gray/frontman.png",
+  right: "images/gray/manright.png",
+  left: "images/gray/manleft.png",
+  rightWalk: "images/gray/manWalkright.png",
+  leftWalk: "images/gray/manWalkLeft.png",
+  transparentMan: "images/gray/transparentMan.png"
 };
 
 class Diamond {
