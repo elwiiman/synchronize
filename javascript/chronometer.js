@@ -9,6 +9,8 @@ let yFriction = 0.49;
 //little change
 //seccion para cargar imagenes
 
+const levelCompleted = "images/levelcompleted/levelCompleted.png";
+
 const backgroundImage = {
   night: "images/background/backgroundCity.jpg",
   light: "images/background/backgroundCityLight.jpg",
@@ -86,11 +88,11 @@ class Diamond {
     this.image = this.imageDiamond;
     this.limitTop = true;
     this.limitDown = false;
-    this.hasbeenCollected = false;
+    this.hasBeenCollected = false;
   }
 
   draw() {
-    if (this.hasbeenCollected == false) {
+    if (this.hasBeenCollected == false) {
       if (this.limitTop == true) this.y += 0.2;
       if (this.y > this.yMax) {
         this.limitDown = true;
@@ -103,7 +105,6 @@ class Diamond {
         this.limitTop = true;
       }
 
-      console.log(this.y, this.yMin, this.yMax);
       ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
   }
@@ -402,13 +403,11 @@ class Plattform {
 function evalOverlapDiamond() {
   if (currentCharacter.overlapCheck(diamond)) {
     diamond.image = diamond.imageTransparentDiamond;
-    diamond.hasbeenCollected = true;
+    diamond.hasBeenCollected = true;
   }
 }
 
 function evalOverlapDoor() {
-  // console.log("aqui estoy");
-  // console.log(currentCharacter.overlapCheck(door));
   if (characterCurrentInstance == 0) {
     if (currentCharacter.overlapCheck(door)) {
       door.active = true;
@@ -433,7 +432,6 @@ function evalOverlapDoor() {
 
 function drawPlattforms() {
   plattformArr.forEach(plattformElement => {
-    // console.log(plattformElement.active);
     if (plattformElement.active == true) {
       if (plattformElement.y < plattformElement.maxY) {
         plattformElement.y += 4; //aumenta posicion en y hasta maxY
@@ -453,11 +451,9 @@ function drawObstacleDoors() {
       for (let j = 0; j < plattformArr.length; j++) {
         if (i == j) {
           if (plattformArr[j].active == true) {
-            // console.log(obstacleDoorArr[i].y);
             if (obstacleDoorArr[i].y > obstacleDoorArr[i].yMin)
               obstacleDoorArr[i].y -= 5;
           } else {
-            // console.log(obstacleDoorArr[i].y);
             if (obstacleDoorArr[i].y <= obstacleDoorArr[i].yMax)
               obstacleDoorArr[i].y += 20;
           }
@@ -509,16 +505,10 @@ function plattformWithCharacterColliderCheck(
         plattformArr[j].active = false;
       }
     }
-    // console.log(
-    //   j,
-    //   plattformArr[j].active
-    //    colDirWithCharacter
-    // );
   }
 }
 
 function drawPresent() {
-  // console.log("has returned" + currentCharacter.hasReturned);
   currentCharacter.colChecker(ground); //verifica colison con el suelo
   currentCharacter.fall(); //aplica gravedad
   ctx.drawImage(
@@ -592,6 +582,7 @@ function startClick() {
     drawPresent(); // dibuja el "presente"
     evalOverlapDoor();
     evalOverlapDiamond();
+    console.log(diamond.hasBeenCollected);
   }, 1000 / 35);
 }
 
@@ -605,7 +596,6 @@ function replay() {
   if (characterInstanceArr.length > 1) {
     //ejecuta hasta que haya mas de una instancia de personajes
     for (let i = 0; i <= characterInstanceArr.length - 2; i++) {
-      // console.log("has returned" + characterInstanceArr[i].hasReturned);
       // para todas las instancias menos la del presente (menos la màs nueva)
       characterInstanceArr[i].colChecker(ground); // colisiones de las replicas con el piso
       characterInstanceArr[i].fall(); //aplica gravedad a las replicas
