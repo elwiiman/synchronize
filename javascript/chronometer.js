@@ -583,6 +583,7 @@ function startClick() {
     evalOverlapDoor();
     evalOverlapDiamond();
     console.log(diamond.hasBeenCollected);
+    
   }, 1000 / 35);
 }
 

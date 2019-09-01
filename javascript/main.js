@@ -38,15 +38,15 @@ function rutineForSetCharacterCopies(x, y) {
 
 // let plattformArr = [plattform_1, plattform_2];
 // let obstacleDoorArr = [obstacleDoor_1, obstacleDoor_2];
-
+let level = 1;
 document.onkeydown = function(e) {
   keys[e.keyCode] = true;
 
   if (keys[13]) {
     // tecla enter
     startClick();
-    let level = 1;
-    levelSelector(level);
+
+    // levelSelector(level);
     console.log("empieza el tiempo");
   }
   if (keys[65]) {
@@ -71,7 +71,7 @@ document.onkeydown = function(e) {
 
   if (keys[83]) {
     // tecla s
-    stopClick();
+    levelSelector(level);
   }
 
   if (keys[40] || keys[37] || keys[39]) {

@@ -20,6 +20,42 @@ let obstacleDoorArr = [obstacleDoor_1, obstacleDoor_2];
 
 function levelSelector(level) {
   switch (level) {
+    case 1:
+      stopClick();
+      resetClick();
+      door.x = 50;
+      door.y = 470 - 35 - 130;
+      characterInstanceArr = [];
+      generateCharacter(door.x + 25, door.y + 5);
+      characterCurrentInstance = 0;
+      currentCharacter = characterInstanceArr[characterCurrentInstance];
+      background.x = 0;
+      background.y = 0;
+      background.width = canvas.width;
+      background.height = canvas.height;
+      ground.x = -5;
+      ground.y = 470 - 35;
+      plattform_1.x = 250;
+      plattform_1.y = 470 - 18 - 50;
+      plattform_2.x = 610;
+      plattform_2.y = 470 - 18 - 50;
+      obstacleDoor_1.x = 450;
+      obstacleDoor_1.y = -25;
+      obstacleDoor_1.height = 450;
+      obstacleDoor_2.x = 800;
+      obstacleDoor_2.y = -25;
+      obstacleDoor_2.height = 450;
+      diamond.x = 870;
+      diamond.y = 260;
+      plattformArr = [plattform_1, plattform_2];
+      obstacleDoorArr = [obstacleDoor_1, obstacleDoor_2];
+
+      setTimeout(function() {
+        startClick();
+        console.log("YAA");
+      }, 500);
+
+      break;
     case 2:
       break;
   }
