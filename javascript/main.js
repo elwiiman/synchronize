@@ -1,3 +1,5 @@
+let start = false;
+
 //funcion para obtner el valor keycode del personaje "en el presente"
 function getTimeAndKey(key, currentCharacter) {
   currentCharacter.instanceTimer.push(currentTime); // hace push en el arreglo de tiempos de la instancia del "presente"
@@ -38,43 +40,53 @@ function rutineForSetCharacterCopies(x, y) {
 
 // let plattformArr = [plattform_1, plattform_2];
 // let obstacleDoorArr = [obstacleDoor_1, obstacleDoor_2];
-let level = 1;
+let level = 0;
 document.onkeydown = function(e) {
   keys[e.keyCode] = true;
 
-  if (keys[13]) {
+  if (keys[13] && start == false) {
     // tecla enter
     startClick();
+    start = true;
+    level = level + 1;
+    levelSelector(level);
 
     // levelSelector(level);
     console.log("empieza el tiempo");
   }
   if (keys[65]) {
     // tecla A
-    if (door.active && characterCurrentInstance == 0) {
+    if (door.active && characterCurrentInstance == 0 && start == true) {
       rutineForSetCharacterCopies(door.x + 25, door.y + 5);
     } else if (
       door.active &&
       characterInstanceArr[characterCurrentInstance - 1].hasReturned == true &&
-      diamond.hasBeenCollected == false
+      diamond.hasBeenCollected == false &&
+      start == true
     ) {
       rutineForSetCharacterCopies(door.x + 25, door.y + 5);
-    } else if (door.active && diamond.hasBeenCollected == true) {
+    } else if (
+      door.active &&
+      diamond.hasBeenCollected == true &&
+      start == true
+    ) {
       stopClick();
+      resetClick();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       background.draw();
-      ctx.drawImage(levelCompletedImage, 220, 20, 550, 270);
+      ctx.drawImage(levelCompletedImage, 140, 0, 700, 300);
       diamond.hasBeenCollected = false;
       diamond.image = diamond.imageDiamond;
+      start = false;
     }
   }
 
-  if (keys[83]) {
+  if (keys[83] && start == true) {
     // tecla s
     levelSelector(level);
   }
 
-  if (keys[40] || keys[37] || keys[39]) {
+  if (keys[40] || keys[37] || keys[38] || keys[39]) {
     // tecla down arrow
     e.preventDefault();
   }

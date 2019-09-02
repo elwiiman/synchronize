@@ -1,3 +1,20 @@
+function checkGameOver() {
+  if (timeLeft == 0) {
+    isGameOver = true;
+  } else {
+    isGameOver = false;
+  }
+}
+
+function gameOver() {
+  stopClick();
+  resetClick();
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  background.draw();
+  ctx.drawImage(timeOverImage, 250, 20, 480, 230);
+}
+
+//-------------------
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 let characterInstanceArr = []; // arreglo de instancias de personajes
@@ -5,11 +22,18 @@ let currentTime = 0; // tiempo "maestro" inicializado
 let intervalId; // declaracion de un interval ID global
 let friction = 0.55;
 let yFriction = 0.49;
-// let colDir;
-//little change
+const timeConstant = 35;
+let realCurrentTime;
+let timeToShow;
+let timeElapsedElement = document.getElementById("time-span");
+let levelElement = document.getElementById("level-span");
+
 //seccion para cargar imagenes
+const cover = "images/cover/cover.png";
 
 const levelCompleted = "images/levelcompleted/levelCompleted.png";
+
+const timeOver = "images/levelcompleted/timeOver.png";
 
 const backgroundImage = {
   night: "images/background/backgroundCity.jpg",
@@ -57,6 +81,16 @@ const characterGrayImages = {
   transparentMan: "images/gray/transparentMan.png"
 };
 
+let coverImage = new Image();
+coverImage.src = cover;
+let levelCompletedImage = new Image();
+levelCompletedImage.src = levelCompleted;
+let timeOverImage = new Image();
+timeOverImage.src = timeOver;
+ctx.drawImage(coverImage, 0, 0, canvas.width, canvas.height);
+console.log("here");
+
+// classes definition section
 class Background {
   constructor(x, y, width, height) {
     this.x = x;
@@ -534,16 +568,6 @@ function drawPresent() {
 //   return seconds;
 // }
 
-// twoDigitsNumber(number) {
-//   if (number.toString().length < 2) {
-//     number = number.toString();
-//     let finalNumber = "0" + number;
-//     return finalNumber;
-//   } else {
-//     return number.toString();
-//   }
-// }
-
 function stopClick() {
   console.log("stop", intervalId);
   clearInterval(intervalId);
@@ -582,8 +606,17 @@ function startClick() {
     drawPresent(); // dibuja el "presente"
     evalOverlapDoor();
     evalOverlapDiamond();
-    console.log(diamond.hasBeenCollected);
-    
+    // console.log(diamond.hasBeenCollected);
+
+    //calculus of elapsed time
+    realCurrentTime = currentTime / timeConstant;
+    timeToShow = isWholeNumber(realCurrentTime);
+    publicTime(timeToShow);
+    publicLevel(level);
+    checkGameOver();
+    if (isGameOver) {
+      gameOver();
+    }
   }, 1000 / 35);
 }
 
