@@ -45,7 +45,7 @@ setTimeout(function() {
 // let obstacleDoorArr = [obstacleDoor_1, obstacleDoor_2];
 
 let level = 0;
-let maxLevels = 2;
+let maxLevels = 3;
 document.onkeydown = function(e) {
   keys[e.keyCode] = true;
 
