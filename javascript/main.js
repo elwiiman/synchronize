@@ -45,10 +45,11 @@ setTimeout(function() {
 // let obstacleDoorArr = [obstacleDoor_1, obstacleDoor_2];
 
 let level = 0;
+let maxLevels = 2;
 document.onkeydown = function(e) {
   keys[e.keyCode] = true;
 
-  if (keys[13] && start == false) {
+  if (keys[13] && start == false && level < maxLevels) {
     // tecla enter
     startClick();
     start = true;
@@ -85,7 +86,7 @@ document.onkeydown = function(e) {
     }
   }
 
-  if (keys[83] && start == true) {
+  if (keys[83] && start == true && level < maxLevels) {
     // tecla s
     levelSelector(level);
   }

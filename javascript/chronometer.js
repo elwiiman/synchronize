@@ -147,11 +147,11 @@ class Diamond {
 }
 
 class Ground {
-  constructor(x, y) {
+  constructor(x, y, width, height) {
     this.x = x;
     this.y = y;
-    this.width = canvas.width + 10;
-    this.height = 50;
+    this.width = width;
+    this.height = height;
     this.image = new Image();
     this.image.src = groundImage;
   }
@@ -161,15 +161,16 @@ class Ground {
 }
 
 class ObstacleDoor {
-  constructor(x, y, height) {
+  constructor(x, y, height, id) {
     this.x = x;
     this.y = y;
-    this.yMin = -250;
+    this.yMin = -360;
     this.yMax = y;
     this.width = 40;
     this.height = height;
     this.image = new Image();
     this.image.src = obstacleDoorImage.obstacleDoorBig;
+    this.id = id;
   }
   draw() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -256,8 +257,9 @@ class Character {
       if (oX >= oY) {
         if (vY > 0) {
           colDir = "t";
-          this.y += oY;
-          this.yVelocity *= -1;
+          // this.y += oY + 10;
+          // this.yVelocity = 10;
+          // this.fall();
         } else {
           colDir = "b";
           this.y -= oY + 10;
@@ -295,9 +297,9 @@ class Character {
         oY = hHeights - Math.abs(vY);
       if (oX >= oY) {
         if (vY > 0) {
-          colDir = "t"; // colision en top
-          this.y += oY;
-          this.yVelocity *= -1;
+          // colDir = "t"; // colision en top
+          // this.y += oY;
+          // this.yVelocity *= -1;
         } else {
           colDir = "b"; // colisione en bottom
           this.y -= oY + 10;
@@ -337,7 +339,7 @@ class Character {
 
   jump() {
     this.isJumping = true;
-    this.yVelocity -= 100;
+    this.yVelocity -= 90;
   }
 
   animationRight() {
@@ -379,7 +381,7 @@ class Character {
 }
 
 class Plattform {
-  constructor(x, y) {
+  constructor(x, y, id) {
     this.x = x;
     this.y = y;
     this.width = 85;
@@ -391,6 +393,7 @@ class Plattform {
     this.active = false;
     this.action = false;
     this.isCollided = false;
+    this.id = id;
   }
 
   colChecker(shapeB) {
@@ -410,8 +413,6 @@ class Plattform {
       if (oX >= oY) {
         if (vY > 0) {
           colDir = "t"; // colision en top
-          // this.y += oY;
-          // this.yVelocity *= -1;
         } else {
           colDir = "b"; // colisione en bottom
         }
@@ -462,6 +463,12 @@ function evalOverlapDoor() {
   }
 }
 
+function drawGrounds() {
+  groundArr.forEach(ground => {
+    ground.draw();
+  });
+}
+
 function drawPlattforms() {
   plattformArr.forEach(plattformElement => {
     if (plattformElement.active == true) {
@@ -478,21 +485,19 @@ function drawPlattforms() {
 }
 
 function drawObstacleDoors() {
-  if (obstacleDoorArr.length == plattformArr.length) {
-    for (let i = 0; i < obstacleDoorArr.length; i++) {
-      for (let j = 0; j < plattformArr.length; j++) {
-        if (i == j) {
-          if (plattformArr[j].active == true) {
-            if (obstacleDoorArr[i].y > obstacleDoorArr[i].yMin)
-              obstacleDoorArr[i].y -= 5;
-          } else {
-            if (obstacleDoorArr[i].y <= obstacleDoorArr[i].yMax)
-              obstacleDoorArr[i].y += 20;
-          }
+  for (let i = 0; i < obstacleDoorArr.length; i++) {
+    for (let j = 0; j < plattformArr.length; j++) {
+      if (obstacleDoorArr[i].id == plattformArr[j].id) {
+        if (plattformArr[j].active == true) {
+          if (obstacleDoorArr[i].y > obstacleDoorArr[i].yMin)
+            obstacleDoorArr[i].y -= 5;
+        } else {
+          if (obstacleDoorArr[i].y <= obstacleDoorArr[i].yMax)
+            obstacleDoorArr[i].y += 20;
         }
       }
-      obstacleDoorArr[i].draw();
     }
+    obstacleDoorArr[i].draw();
   }
 }
 
@@ -512,24 +517,21 @@ function characterWithObstacleDoorColliderCheck(obstacleDoorArr, characterArr) {
   }
 }
 
-function plattformWithCharacterColliderCheck(
-  plattformArr,
-  characterArray,
-  ground
-) {
+function characterWithGroundColliderCheck(groundArr, characterArr) {
+  for (let i = 0; i < characterArr.length; i++) {
+    for (let j = 0; j < groundArr.length; j++) {
+      characterArr[i].colChecker(groundArr[j]);
+    }
+  }
+}
+
+function plattformWithCharacterColliderCheck(plattformArr, characterArray) {
   let colDirWithCharacter;
-  let colDirWithGround;
   salta: for (let j = 0; j < plattformArr.length; j++) {
     // recorre todas las plataformas
     for (let i = 0; i < characterArray.length; i++) {
       // recorre todos los personajes
       colDirWithCharacter = plattformArr[j].colChecker(characterArray[i]); //obtiene el lugar de colision de una plataforma con un personaje
-      colDirWithGround = plattformArr[j].colChecker(ground); //obtiene el lugar de colision de una plataforma con el piso
-      if (colDirWithGround === "b") {
-        plattformArr[j].action = true;
-      } else {
-        plattformArr[j].action = false;
-      }
       if (colDirWithCharacter === "t") {
         plattformArr[j].active = true;
         continue salta;
@@ -541,7 +543,6 @@ function plattformWithCharacterColliderCheck(
 }
 
 function drawPresent() {
-  currentCharacter.colChecker(ground); //verifica colison con el suelo
   currentCharacter.fall(); //aplica gravedad
   ctx.drawImage(
     // dibuja la imagen del current character (personaje del presente) o instancia más actual
@@ -585,14 +586,11 @@ function startClick() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     controllerCheck(); //ejecuta los comandos de movimiento de acuerdo a las teclas presionadas
     background.draw();
-    ground.draw(); // dibuja el piso
+    drawGrounds(); // dibuja el piso
     door.draw();
     diamond.draw();
-    plattformWithCharacterColliderCheck(
-      plattformArr,
-      characterInstanceArr,
-      ground
-    );
+    characterWithGroundColliderCheck(groundArr, characterInstanceArr);
+    plattformWithCharacterColliderCheck(plattformArr, characterInstanceArr);
     characterWithPlattformColliderCheck(plattformArr, characterInstanceArr); // revisa colisiones entre plataformas y personajes
     drawPlattforms(); // dibuja las plataformas
     characterWithObstacleDoorColliderCheck(
@@ -629,7 +627,6 @@ function replay() {
     //ejecuta hasta que haya mas de una instancia de personajes
     for (let i = 0; i <= characterInstanceArr.length - 2; i++) {
       // para todas las instancias menos la del presente (menos la màs nueva)
-      characterInstanceArr[i].colChecker(ground); // colisiones de las replicas con el piso
       characterInstanceArr[i].fall(); //aplica gravedad a las replicas
       ctx.drawImage(
         // dibuja a las replicas
