@@ -23,3 +23,7 @@ function publicTime(time) {
 function publicLevel(level) {
   levelElement.innerText = "Level: " + level;
 }
+
+function drawCover() {
+  ctx.drawImage(coverImage, 0, 0, canvas.width, canvas.height);
+}

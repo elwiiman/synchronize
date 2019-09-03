@@ -87,8 +87,6 @@ let levelCompletedImage = new Image();
 levelCompletedImage.src = levelCompleted;
 let timeOverImage = new Image();
 timeOverImage.src = timeOver;
-ctx.drawImage(coverImage, 0, 0, canvas.width, canvas.height);
-console.log("here");
 
 // classes definition section
 class Background {

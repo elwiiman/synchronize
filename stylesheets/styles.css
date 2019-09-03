@@ -15,7 +15,7 @@ body {
   align-content: center;
   width: auto;
   height: 550px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 .game-info {
   display: flex;
@@ -33,11 +33,11 @@ body {
   height: 50px;
   width: 80px;
   margin: 0 5px 0 5px;
-  padding: 3px;
+  padding: 10px;
 }
 
 #canvas {
-  border: 2px solid #f3cd74;
+  border: 2px solid #8a7441;
   border-radius: 8px;
 }
 

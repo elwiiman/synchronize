@@ -22,6 +22,9 @@ function rutineForSetCharacterCopies(x, y) {
   startClick(); //inicia nuevamente la secuencia de tiempo
 }
 
+setTimeout(function() {
+  drawCover();
+}, 1);
 //-----------------------------------------------
 // let keys = []; // arreglo de todas las teclas presionadas
 
@@ -40,6 +43,7 @@ function rutineForSetCharacterCopies(x, y) {
 
 // let plattformArr = [plattform_1, plattform_2];
 // let obstacleDoorArr = [obstacleDoor_1, obstacleDoor_2];
+
 let level = 0;
 document.onkeydown = function(e) {
   keys[e.keyCode] = true;
