@@ -5,9 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Chronometer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/css/uikit.min.css"
+    />
     <link rel="stylesheet" href="./stylesheets/styles.css" />
   </head>
   <body>
+    <!-- header -->
+    <div class="head">
+      <header>SYNCHRONIZE</header>
+    </div>
+    <!-- header -->
+
+    <!-- cards for game elements -->
+    <div
+      class="uk-child-width-1-3@m uk-grid-small uk-grid-match game-elements-container"
+      uk-grid
+    >
+      <div class="semi-title-div">
+        <h2 class="uk-heading-divider semi-title">Game Elements</h2>
+      </div>
+      <div>
+        <div class="uk-card  uk-card-body">
+          <h3 class="uk-card-title game-element-title">TOOL</h3>
+
+          <img
+            id="game-element-img3-1"
+            src="images/door/activeDoor.png"
+            alt="tool"
+          />
+          <img
+            id="game-element-img3"
+            src="images/door/inactiveDoor.png"
+            alt="tool"
+          />
+          <p>This is a time machine!!!</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="uk-card  uk-card-body">
+          <h3 class="uk-card-title game-element-title">CHARACTER</h3>
+          <img
+            id="game-element-img2"
+            src="images/color/frontman.png"
+            alt="character"
+          />
+          <p>This is our main character.</p>
+        </div>
+      </div>
+      <div>
+        <div class="uk-card  uk-card-body">
+          <h3 class="uk-card-title game-element-title">OBJECTIVE</h3>
+          <img
+            id="game-element-img1"
+            src="images/diamond/diamond.png"
+            alt="diamond"
+          />
+          <p class="parag-img1">
+            We have to collect the diamond and return to the time machine!
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- cards for game elements -->
+
+    <!-- card -->
+
+    <!-- canvas -->
     <div class="canvas__div">
       <div class="game-info-container">
         <div class="game-info">
@@ -20,7 +86,9 @@
 
       <canvas id="canvas" width="970" height="470"></canvas>
     </div>
+    <!-- canvas -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit.min.js"></script>
     <script src="./javascript/chronometer.js"></script>
     <script src="./javascript/elapsed-time.js"></script>
     <script src="./javascript/game.js"></script>
