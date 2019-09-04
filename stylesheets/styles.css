@@ -1,10 +1,112 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:500,700&display=swap");
+
 @font-face {
   font-family: "Digi";
   src: url("fonts/ds-digi.ttf");
 }
 
+@font-face {
+  font-family: "Peace-Sans";
+  src: url("fonts/Peace-Sans.ttf");
+}
+
 body {
   background-color: #1c2143;
+  margin: 0;
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 550px;
+  /* border: 1px solid yellow; */
+  padding: 13.5%;
+}
+
+.head header {
+  font-family: "Peace-Sans";
+  font-size: 150px;
+  color: #5ccad1;
+}
+
+.semi-title-div {
+  width: 98%;
+  height: 40px;
+  padding: 2% 0 8% 3%;
+}
+
+.semi-title-div h2 {
+  font-family: "Roboto";
+  font-weight: 900;
+  color: #1c2143;
+  font-size: 50px;
+}
+
+.uk-heading-divider {
+  border-color: #1c2143;
+}
+
+.game-elements-container {
+  background-color: #5ccad1;
+  padding-bottom: 2%;
+}
+
+.uk-card {
+  text-align: center;
+  border: 10px solid #f3cd74;
+  margin: 15px;
+  border-radius: 5px;
+}
+
+.game-element-title {
+  color: #1c2143;
+  font-family: "Peace-Sans";
+  font-size: 28px;
+}
+
+.uk-card > p {
+  font-family: "Roboto";
+  color: #1c2143;
+  font-size: 22px;
+}
+
+#game-element-img1 {
+  width: 150px;
+  height: 150px;
+  padding-top: 50px;
+  animation-name: moveInYAxis;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.parag-img1 {
+  padding-top: 42px;
+}
+
+#game-element-img2 {
+  width: 92px;
+  height: 185px;
+}
+
+#game-element-img3 {
+  width: 110px;
+  height: 185px;
+  opacity: 1;
+  position: relative;
+}
+
+#game-element-img3:hover {
+  opacity: 0;
+}
+
+#game-element-img3-1 {
+  width: 110px;
+  height: 185px;
+  visibility: visible;
+  position: absolute;
+  left: 128px;
 }
 
 .canvas__div {
@@ -16,29 +118,7 @@ body {
   width: auto;
   height: 550px;
   flex-wrap: wrap;
-}
-.game-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  border: 2px solid #f3cd74;
-  color: #f3cd74;
-  border-radius: 8px;
-  box-sizing: border-box;
-  font-family: "Digi";
-  text-align: center;
-  font-size: 27px;
-  height: 50px;
-  width: 80px;
-  margin: 0 5px 0 5px;
-  padding: 10px;
-}
-
-#canvas {
-  border: 2px solid #8a7441;
-  border-radius: 8px;
+  /* border: 1px solid red; */
 }
 
 .game-info-container {
@@ -48,6 +128,37 @@ body {
   justify-content: space-around;
 }
 
+.game-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #f3cd74;
+  color: #f3cd74;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: "Digi";
+  text-align: center;
+  font-size: 27px;
+  height: 60px;
+  width: 90px;
+  margin: 0 5px 5px 5px;
+  padding: 8px;
+}
+
+#canvas {
+  border: 2px solid #8a7441;
+  border-radius: 8px;
+}
+
 #level-span {
   font-size: 19.5px;
+}
+
+@keyframes moveInYAxis {
+  from {
+    transform: translateY(-18px);
+  }
+  to {
+    transform: translateY(12px);
+  }
 }
