@@ -24,7 +24,7 @@
       uk-grid
     >
       <div class="semi-title-div">
-        <h2 class="uk-heading-divider semi-title">Game Elements</h2>
+        <h2 class="uk-heading-divider game-elements">Game Elements</h2>
       </div>
       <div>
         <div class="uk-card  uk-card-body">
@@ -40,7 +40,9 @@
             src="images/door/inactiveDoor.png"
             alt="tool"
           />
-          <p>This is a time machine!!!</p>
+          <p>
+            This is a time machine!!! Use it to help yourself through the level.
+          </p>
         </div>
       </div>
 
@@ -52,7 +54,7 @@
             src="images/color/frontman.png"
             alt="character"
           />
-          <p>This is our main character.</p>
+          <p>This is our main character... or not.</p>
         </div>
       </div>
       <div>
@@ -71,7 +73,53 @@
     </div>
     <!-- cards for game elements -->
 
-    <!-- card -->
+    <!-- div for controls -->
+    <div class="controls">
+      <div class="controls-title">
+        <h2 class="list-controls">Controls</h2>
+      </div>
+      <div class="list-div-container">
+        <div class="list-div uk-child-width-expand@s" uk-grid>
+          <ul class="uk-list uk-list-divider">
+            <li>
+              JUMP <img src="images/keys/arrow-up-icon.png" alt="key-up" />
+            </li>
+            <li>
+              MOVE RIGHT
+              <img src="images/keys/arrow-right-icon.png" alt="key-right" />
+            </li>
+            <li>
+              MOVE LEFT
+              <img src="images/keys/arrow-left-icon.png" alt="key-left" />
+            </li>
+          </ul>
+
+          <ul class="uk-list uk-list-divider">
+            <li>
+              START / NEXT LEVEL<img
+                src="images/keys/enter-icon.png"
+                alt="key-up"
+              />
+            </li>
+            <li>
+              TRAVEL IN TIME!
+              <img
+                src="images/keys/letter-uppercase-A-icon.png"
+                alt="key-right"
+              />
+            </li>
+            <li>
+              RESTART
+              <img
+                src="images/keys/letter-uppercase-S-icon.png"
+                alt="key-left"
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- div for controls -->
 
     <!-- canvas -->
     <div class="canvas__div">
@@ -89,6 +137,7 @@
     <!-- canvas -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit.min.js"></script>
+    <script src="./javascript/audio-script.js"></script>
     <script src="./javascript/chronometer.js"></script>
     <script src="./javascript/elapsed-time.js"></script>
     <script src="./javascript/game.js"></script>

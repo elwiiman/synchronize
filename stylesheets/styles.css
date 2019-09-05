@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:500,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap");
 
 @font-face {
   font-family: "Digi";
@@ -37,13 +38,13 @@ body {
 }
 
 .semi-title-div h2 {
-  font-family: "Roboto";
+  font-family: "Ubuntu";
   font-weight: 900;
   color: #1c2143;
   font-size: 50px;
 }
 
-.uk-heading-divider {
+.uk-heading-divider.game-elements {
   border-color: #1c2143;
 }
 
@@ -66,7 +67,7 @@ body {
 }
 
 .uk-card > p {
-  font-family: "Roboto";
+  font-family: "Ubuntu";
   color: #1c2143;
   font-size: 22px;
 }
@@ -109,6 +110,60 @@ body {
   left: 128px;
 }
 
+.controls {
+  height: 800px;
+}
+
+.controls-title {
+  width: 95%;
+  height: 40px;
+  padding: 4% 0 8% 3%;
+  text-align: center;
+}
+
+.controls-title h2 {
+  color: #5ccad1;
+  font-family: "Ubuntu";
+  font-weight: 900;
+  font-size: 50px;
+}
+
+.uk-heading-divider.list-controls {
+  border-color: #5ccad1;
+}
+.list-div-container {
+  display: flex;
+  justify-content: center;
+}
+
+.list-div {
+  width: 85%;
+  /* border: 1px solid yellow; */
+}
+
+.uk-list {
+  font-family: "Peace-Sans";
+  font-size: 25px;
+  color: #f3cd74;
+  letter-spacing: 1.3px;
+}
+
+li {
+  text-align: center;
+}
+
+li > img {
+  width: 110px;
+  height: 110px;
+}
+
+.uk-list-divider > li:nth-child(n + 2) {
+  border-top: 3px solid #e0cea2;
+  border-radius: 15px;
+  padding-top: 10%;
+  padding-bottom: 5%;
+}
+
 .canvas__div {
   display: flex;
   padding: 10px 0 10px 0;
@@ -116,7 +171,7 @@ body {
   /* align-items: center; */
   align-content: center;
   width: auto;
-  height: 550px;
+  height: 600px;
   flex-wrap: wrap;
   /* border: 1px solid red; */
 }

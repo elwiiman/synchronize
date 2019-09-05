@@ -8,6 +8,7 @@ function controllerCheck() {
     getTimeAndKey("Up", currentCharacter);
     currentCharacter.jump();
     currentCharacter.isGrounded = false;
+    // jumpAudio.play();
   } else if (keys[40]) {
     // tecla down arrow
     getTimeAndKey("Down", currentCharacter);
