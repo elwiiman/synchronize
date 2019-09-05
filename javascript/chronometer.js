@@ -12,6 +12,10 @@ function gameOver() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   background.draw();
   ctx.drawImage(timeOverImage, 250, 20, 480, 230);
+  mainSong.pause();
+  timeOverAudio.play();
+  console.log("here");
+  rewindMainSong();
 }
 
 //-------------------
@@ -229,6 +233,9 @@ class Character {
     this.isCollidedBottom = false;
     this.isCollidedWithPlattform = false;
     this.hasReturned = false;
+    this.jumpAudio = new Audio();
+    this.jumpAudio.src = "sounds/jumpSound.mp3";
+    this.jumpAudio.volume = 0.2;
   }
   overlapCheck(item) {
     return (
@@ -265,6 +272,8 @@ class Character {
           this.y -= oY + 10;
           this.isJumping = false;
           this.isGrounded = true;
+          // rewind(jumpAudio);
+          // jumpAudio.pause();
         }
       } else {
         if (vX > 0) {
@@ -306,6 +315,8 @@ class Character {
           this.isJumping = false;
           this.isGrounded = true;
           shapeB.isCollided = true;
+          // rewind(jumpAudio);
+          // jumpAudio.pause();
         }
       } else {
         if (vX > 0) {
@@ -338,6 +349,7 @@ class Character {
   }
 
   jump() {
+    this.jumpAudio.play();
     this.isJumping = true;
     this.yVelocity -= 90;
   }
@@ -437,6 +449,7 @@ function evalOverlapDiamond() {
   if (currentCharacter.overlapCheck(diamond)) {
     diamond.image = diamond.imageTransparentDiamond;
     diamond.hasBeenCollected = true;
+    achieveAudio.play();
   }
 }
 
@@ -502,9 +515,14 @@ function drawObstacleDoors() {
 }
 
 function characterWithPlattformColliderCheck(plattformArr, characterArr) {
+  let colChecker;
   for (let i = 0; i < characterArr.length; i++) {
     for (let j = 0; j < plattformArr.length; j++) {
-      characterArr[i].colCheckerPlattforms(plattformArr[j]);
+      colChecker = characterArr[i].colCheckerPlattforms(plattformArr[j]);
+      if (colChecker == "b") {
+        rewind(characterArr[i].jumpAudio);
+        characterArr[i].jumpAudio.pause();
+      }
     }
   }
 }
@@ -518,9 +536,14 @@ function characterWithObstacleDoorColliderCheck(obstacleDoorArr, characterArr) {
 }
 
 function characterWithGroundColliderCheck(groundArr, characterArr) {
+  let colChecker;
   for (let i = 0; i < characterArr.length; i++) {
     for (let j = 0; j < groundArr.length; j++) {
-      characterArr[i].colChecker(groundArr[j]);
+      colChecker = characterArr[i].colChecker(groundArr[j]);
+      if (colChecker == "b") {
+        rewind(characterArr[i].jumpAudio);
+        characterArr[i].jumpAudio.pause();
+      }
     }
   }
 }

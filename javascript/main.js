@@ -45,7 +45,7 @@ setTimeout(function() {
 // let obstacleDoorArr = [obstacleDoor_1, obstacleDoor_2];
 
 let level = 0;
-let maxLevels = 3;
+let maxLevels = 2;
 document.onkeydown = function(e) {
   keys[e.keyCode] = true;
 
@@ -55,6 +55,8 @@ document.onkeydown = function(e) {
     start = true;
     level = level + 1;
     levelSelector(level);
+    rewindMainSong();
+    mainSong.play();
 
     // levelSelector(level);
     console.log("empieza el tiempo");
@@ -63,6 +65,8 @@ document.onkeydown = function(e) {
     // tecla A
     if (door.active && characterCurrentInstance == 0 && start == true) {
       rutineForSetCharacterCopies(door.x + 25, door.y + 5);
+      rewindMainSong();
+      mainSong.play();
     } else if (
       door.active &&
       characterInstanceArr[characterCurrentInstance - 1].hasReturned == true &&
@@ -70,6 +74,8 @@ document.onkeydown = function(e) {
       start == true
     ) {
       rutineForSetCharacterCopies(door.x + 25, door.y + 5);
+      rewindMainSong();
+      mainSong.play();
     } else if (
       door.active &&
       diamond.hasBeenCollected == true &&
@@ -78,17 +84,21 @@ document.onkeydown = function(e) {
       stopClick();
       resetClick();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      mainSong.pause();
       background.draw();
       ctx.drawImage(levelCompletedImage, 140, 0, 700, 300);
       diamond.hasBeenCollected = false;
       diamond.image = diamond.imageDiamond;
+      levelWin.play();
       start = false;
     }
   }
 
-  if (keys[83] && start == true && level < maxLevels) {
+  if (keys[83] && start == true && level <= maxLevels) {
     // tecla s
     levelSelector(level);
+    rewindMainSong();
+    mainSong.play();
   }
 
   if (keys[40] || keys[37] || keys[38] || keys[39]) {
